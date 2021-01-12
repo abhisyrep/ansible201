@@ -1,0 +1,14 @@
+---
+- hosts: slave1
+  become: yes
+  tasks:
+   - name: restart system to reboot to newest kernel
+     shell: "reboot now"
+     async: 1
+     poll: 0
+
+   - name: wait for 10 seconds
+     pause:
+       seconds: 100
+
+   - ping:
